@@ -6,12 +6,14 @@ import { WorkspaceHeader } from "./workspace-header";
 import { SidebarItem } from "./siderbar-item";
 import { useGetChannels } from "@/features/channels/api/use-get-channels";
 import { WorkspaceSection } from "./workspace-section";
-import { useGetMember } from "@/features/members/api/use-get-member";
+import { useGetMembers } from "@/features/members/api/use-get-members";
 import { UserItem } from "./user-item";
 import { useCreateChannelModal } from "@/features/channels/store/use-create-channel-modal";
 import { useChannelId } from "@/hooks/use-channel-id";
+import { useMemberId } from "@/hooks/use-member-id";
 
 export const WorkspaceSidebar = () =>{
+    const memberId = useMemberId();
     const channelId = useChannelId();
     const workspaceId = useWorkspaceId();
     const [_open,setOpen] = useCreateChannelModal(); 
@@ -19,7 +21,7 @@ export const WorkspaceSidebar = () =>{
     const { data:member,isLoading:memberLoading } = useCurrentMember({workspaceId});
     const { data:workspace,isLoading: workspaceLoading } = useGetWorkspace({id:workspaceId});
     const { data:channels,isLoading:channelsLoading} = useGetChannels({workspaceId});
-    const { data:members,isLoading: membersLoading} = useGetMember({workspaceId});
+    const { data:members,isLoading: membersLoading} = useGetMembers({workspaceId});
 
     if( workspaceLoading || memberLoading ){
         return(
@@ -84,6 +86,7 @@ export const WorkspaceSidebar = () =>{
                     id={item._id}
                     label={item.user.name}
                     image={item.user.image}
+                    variant={item._id === memberId ? "active":"default" }
                     />
                 ))}
                 </WorkspaceSection>

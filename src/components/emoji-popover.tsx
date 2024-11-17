@@ -17,7 +17,7 @@ import React, { useState } from "react";
 interface EmojiPopOverPrps {
   children: React.ReactNode;
   hint?: string;
-  onEmojiSelect: (emoji: any) => void;
+  onEmojiSelect: (emoji: any ) => void;
 }
 
 export const EmojiPopOver = ({
@@ -54,7 +54,7 @@ export const EmojiPopOver = ({
                 </TooltipContent>
             </Tooltip>
             <PopoverContent className="p-0 w-full border-none shadow-none">
-                <Picker data={data} onEmojiSelect={onSelect}/>
+                <Picker data={data}  onEmojiSelect={onSelect}/>
             </PopoverContent>
         </Popover>
     </TooltipProvider>

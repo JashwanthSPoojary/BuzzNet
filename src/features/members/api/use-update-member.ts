@@ -5,14 +5,10 @@ import { Id } from "../../../../convex/_generated/dataModel";
 import { api } from '../../../../convex/_generated/api'
 
 type RequestType = { 
-    body: string,
-    workspaceId:Id<"workspaces">,
-    image?: Id<"_storage">,
-    channelId?: Id<"channels">,
-    parentMessageId?: Id<"messages">
-    conversationId?: Id<"conversations">
+    id: Id<"members">;
+    role: "admin" | "member"
  } ;
-type ResponseType = Id<"messages"> | null;
+type ResponseType = Id<"members"> | null;
 
 type Options = {
     onSuccess?: (data:ResponseType) => void;
@@ -21,8 +17,8 @@ type Options = {
     throwError?: boolean;
 };
 
-export const useCreateMessage = () =>{
-    const mutation = useMutation(api.messages.create);
+export const useUpdateMember = () =>{
+    const mutation = useMutation(api.members.update);
     const [data,setData] = useState<ResponseType>(null);
     const [error,setError] = useState<Error | null>(null);
     const [status,setStatus] = useState<"success"|"error"|"settled"|"pending"|null>(null);
