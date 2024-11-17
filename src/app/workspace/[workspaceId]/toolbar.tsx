@@ -4,15 +4,12 @@ import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { Info, Search } from "lucide-react";
 
 import {
-    Command,
     CommandDialog,
     CommandEmpty,
     CommandGroup,
     CommandInput,
     CommandItem,
     CommandList,
-    CommandSeparator,
-    CommandShortcut,
   } from "@/components/ui/command"
 import { useState } from "react";
 import { useGetChannels } from "@/features/channels/api/use-get-channels";
